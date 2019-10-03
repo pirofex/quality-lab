@@ -1,0 +1,2 @@
+- There should be a system available to test.
+- The user registration should only allow valid passwords.
