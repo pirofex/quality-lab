@@ -1,12 +1,12 @@
 import logging
 from os import getcwd
 
-from singleton import singleton
+from calculator.singleton import singleton
 
-import corrector
-import parser
-import converter
-import evaluator
+import calculator.corrector
+import calculator.parser
+import calculator.converter
+import calculator.evaluator
 
 @singleton
 class Calculator(object):

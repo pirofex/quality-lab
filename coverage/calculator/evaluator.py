@@ -1,5 +1,5 @@
 import logging
-import definitions
+import calculator.definitions as definitions
 
 class EvaluateError(Exception):
     def __init__(self, eIdent, eArgCount, argCount):

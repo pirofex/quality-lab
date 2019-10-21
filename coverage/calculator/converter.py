@@ -1,6 +1,6 @@
 import logging
 
-import definitions
+import calculator.definitions
 
 class ConvertError(Exception):
     def __str__(self):

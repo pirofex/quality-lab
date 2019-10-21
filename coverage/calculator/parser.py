@@ -1,7 +1,7 @@
 import logging
 from collections import defaultdict
 import re
-import definitions
+import calculator.definitions as definitions
 
 class ParseError(Exception):
     def __init__(self, eExpr, ePos):
