@@ -17,18 +17,18 @@ class Converter(object):
         '''
         logging.info('Converter started.')
 
-    	stack = []
-    	convertedExpr = []
-    	
-    	for ident in iExpr:
-    	    if (ident.type == 'num'):
-    	        convertedExpr.append(ident)
-    	    elif (ident.type == 'func'):
-    	        stack.append(ident)
-    	    # elif (ident == ','):
-    	    #     pass
-    	    elif (ident.type == 'op'):
-    	        while (len(stack) > 0):
+        stack = []
+        convertedExpr = []
+    
+        for ident in iExpr:
+            if (ident.type == 'num'):
+                convertedExpr.append(ident)
+            elif (ident.type == 'func'):
+                stack.append(ident)
+            # elif (ident == ','):
+            #     pass
+            elif (ident.type == 'op'):
+                while (len(stack) > 0):
                     stackIdent = stack[-1]
                     isStackIdentOp = stackIdent.val in definitions._operators.keys()
                     # complicated condition
@@ -42,34 +42,34 @@ class Converter(object):
                             convertedExpr.append(stack.pop())
                         else:
                             break
-    	            else:
-    	                break
-    	        stack.append(ident)
-    	    elif (ident.type == 'lb'):
-    	        stack.append(ident)
-    	    elif (ident.type == 'rb'):
-    	        while (len(stack) > 0):
-    	            if (stack[-1].type != 'lb'):
-    	                convertedExpr.append(stack.pop())
-    	            else:
-    	                break
-    	        if (len(stack) == 0):
+                    else:
+                        break
+                stack.append(ident)
+            elif (ident.type == 'lb'):
+                stack.append(ident)
+            elif (ident.type == 'rb'):
+                while (len(stack) > 0):
+                    if (stack[-1].type != 'lb'):
+                        convertedExpr.append(stack.pop())
+                    else:
+                        break
+                if (len(stack) == 0):
                     raise ConvertError()
-    	        else:
-    	            stack.pop()
-    	        if (len(stack) > 0):
-    	            if (stack[-1].type == 'func'):
-    	                convertedExpr.append(stack.pop())
-    	
-    	while (len(stack) > 0):
-    	    if stack[-1].type in ('lb', 'rb'):
+                else:
+                    stack.pop()
+                if (len(stack) > 0):
+                    if (stack[-1].type == 'func'):
+                        convertedExpr.append(stack.pop())
+
+        while (len(stack) > 0):
+            if stack[-1].type in ('lb', 'rb'):
                 raise ConvertError()
-    	    convertedExpr.append(stack.pop())
-    	
+            convertedExpr.append(stack.pop())
+    
         debugMsg = 'Converter IO:\n'
         debugMsg += 'Input: ' + ', '.join([ str(ident.val) for ident in iExpr ]) + ',\n'
         debugMsg += 'Output: ' + ', '.join([ str(ident.val) for ident in convertedExpr ]) + '.'
 
         logging.debug(debugMsg)
 
-    	return convertedExpr
+        return convertedExpr
