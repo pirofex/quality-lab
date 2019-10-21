@@ -1,2 +1,3 @@
 - There should be a system available to test.
 - The user registration should only allow valid passwords.
+- The user should be able to select the type of site which shall be created.
