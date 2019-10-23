@@ -2,7 +2,7 @@ import re
 import math
 import logging
 
-import calculator.definitions
+import calculator.definitions as definitions
 
 # basic error
 def CorrectorError(Exception):
